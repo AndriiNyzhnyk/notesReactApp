@@ -28,6 +28,8 @@
             alert ("remove");
         };
         save = () => {
+            const newText = this.refs.newText.value;
+            console.log(newText);
             this.setState ({edit: false});
         };
         rendNorm() {
@@ -42,7 +44,8 @@
         rendEdit() {
             return (
                 <div className="task">
-                    <textarea className="editTextTask" defaultValue={this.props.children}></textarea><br/>
+                    <textarea ref="newText" className="editTextTask"
+                              defaultValue={this.props.children}></textarea><br/>
                     <button onClick={this.save} className=" btn btnSave">Save</button>
                 </div>
             );
@@ -55,10 +58,32 @@
             }
         }
     }
-    ReactDOM.render(
-            <Task>Task1</Task>,
-        document.getElementById("content")
-    )
+
+    class Field extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                tasks: [
+                    'Task1',
+                    'Task2',
+                    'Task3'
+                ]
+            };
+        };
+        render() {
+            return (
+                <div className="field">
+                    {
+                        this.state.tasks.map (function (item, i) {
+                            return (<Task key={i}>{item}</Task>);
+                        })
+                    }
+                </div>
+            );
+        }
+    }
+    ReactDOM.render(<Field/>, document.getElementById("content"));
+
 </script>
 
 </body>
