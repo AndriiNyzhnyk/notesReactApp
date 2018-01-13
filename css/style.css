@@ -44,6 +44,16 @@ body, html {
     color: black;
 }
 
+.btnNew {
+    position: relative;
+    left: 45%;
+}
+
+.btnNew:hover {
+    background-color: dodgerblue;
+    color: black;
+}
+
 .editTextTask {
     width: 200px;
     height: 50px;

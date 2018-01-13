@@ -42,20 +42,32 @@
             );
         };
         rendEdit() {
+            let text;
+            if(this.props.children === '_default_') {
+                text = '';
+            } else { text = this.props.children }
+
             return (
                 <div className="task">
                     <textarea ref="newText" className="editTextTask"
-                              defaultValue={this.props.children}></textarea><br/>
-                    <button onClick={this.save} className=" btn btnSave">Save</button>
+                              defaultValue={text}></textarea><br/>
+                    <button onClick={this.save} className="btn btnSave">Save</button>
                 </div>
             );
         };
         render() {
+            console.log(this.props.children);
+
+            if(this.props.children === '_default_') {
+                return this.rendEdit ();
+            }
+
             if (this.state.edit) {
                 return this.rendEdit ();
             } else {
                 return this.rendNorm ();
             }
+
         }
     }
 
@@ -63,17 +75,18 @@
         constructor(props) {
             super(props);
             this.state = {
-                tasks: [
-                    'Task1',
-                    'Task2',
-                    'Task3'
-                ]
+                tasks: []
             };
+        };
+        add = (task) => {
+            let arr = this.state.tasks;
+            arr.push(task);
+            this.setState({tasks: arr});
         };
         deleteBlock = (i) => {
             let arr = this.state.tasks;
             arr.splice (i, 1);
-            this.setState ({tasks: arr});
+            this.setState({tasks: arr});
         };
         updateText = (text, i) => {
             let arr = this.state.tasks;
@@ -91,6 +104,7 @@
         render() {
             return (
                 <div className="field">
+                    <button onClick={this.add.bind(null, '_default_')} className=" btn btnNew">New</button>
                     {this.state.tasks.map(this.taskConstructor)}
                 </div>
             );
