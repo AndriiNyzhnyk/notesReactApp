@@ -38,3 +38,16 @@ body, html {
     background-color: red;
     color: black;
 }
+
+.btnSave:hover {
+    background-color: green;
+    color: black;
+}
+
+.editTextTask {
+    width: 200px;
+    height: 50px;
+    padding: 5px;
+    font-size: 1.1em;
+    font-family: monospace;
+}

@@ -42,8 +42,8 @@
         rendEdit() {
             return (
                 <div className="task">
-                    <textarea defaultValue={this.props.children}></textarea>
-                    <button onClick={this.save} className=" btn btnSuccess">Save</button>
+                    <textarea className="editTextTask" defaultValue={this.props.children}></textarea><br/>
+                    <button onClick={this.save} className=" btn btnSave">Save</button>
                 </div>
             );
         };
