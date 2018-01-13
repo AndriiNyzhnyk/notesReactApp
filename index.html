@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<div id="content"></div>
+
+<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+
+
+<script type="text/babel">
+    class Task extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                edit: false,
+            };
+        };
+        edit = () => {
+            this.setState ({edit: true});
+        };
+        remove = () => {
+            alert ("remove");
+        };
+        save = () => {
+            this.setState ({edit: false});
+        };
+        rendNorm() {
+            return (
+                <div className="task">
+                    <div className="textTask">{this.props.children}</div>
+                    <button onClick={this.edit} className="btn btnEdit">Edit</button>
+                    <button onClick={this.remove} className="btn btnRemove">Remove</button>
+                </div>
+            );
+        };
+        rendEdit() {
+            return (
+                <div className="task">
+                    <textarea defaultValue={this.props.children}></textarea>
+                    <button onClick={this.save} className=" btn btnSuccess">Save</button>
+                </div>
+            );
+        };
+        render() {
+            if (this.state.edit) {
+                return this.rendEdit ();
+            } else {
+                return this.rendNorm ();
+            }
+        }
+    }
+    ReactDOM.render(
+            <Task>Task1</Task>,
+        document.getElementById("content")
+    )
+</script>
+
+</body>
+</html>
