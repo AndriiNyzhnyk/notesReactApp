@@ -25,11 +25,11 @@
             this.setState ({edit: true});
         };
         remove = () => {
-            alert ("remove");
+            this.props.remove(this.props.index);
         };
         save = () => {
             const newText = this.refs.newText.value;
-            console.log(newText);
+            this.props.update(newText, this.props.index);
             this.setState ({edit: false});
         };
         rendNorm() {
@@ -80,9 +80,12 @@
             arr[i] = text;
             this.setState ({tasks: arr});
         };
-        taskConstructor(item, i) {
+        taskConstructor = (item, i) => {
             return (
-                <Task key={i} index={i}>{item}</Task>
+                <Task key={i}
+                      index={i}
+                      update={this.updateText}
+                      remove={this.deleteBlock}>{item}</Task>
             );
         };
         render() {
